@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AYUSH'S Music Player</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="music-player">
+        <div class="player-header">
+            <h1><i class="fas fa-music"></i> AYUSH'S Music Player</h1>
+        </div>
+        
+        <div class="album-art">
+            <img id="albumArt" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'%3E%3Crect fill='%23667eea' width='200' height='200'/%3E%3Ccircle cx='100' cy='100' r='80' fill='%23764ba2' opacity='0.8'/%3E%3Ccircle cx='100' cy='100' r='40' fill='%23fff' opacity='0.9'/%3E%3Ccircle cx='100' cy='100' r='15' fill='%23333'/%3E%3C/svg%3E" alt="Album Art">
+            <div class="vinyl-effect"></div>
+        </div>
+        
+        <div class="track-info">
+            <h2 id="trackTitle">Select a song</h2>
+            <p id="trackArtist">Unknown Artist</p>
+        </div>
+        
+        <div class="progress-container">
+            <span id="currentTime">0:00</span>
+            <div class="progress-bar">
+                <div class="progress" id="progress"></div>
+                <div class="progress-handle" id="progressHandle"></div>
+            </div>
+            <span id="duration">0:00</span>
+        </div>
+        
+        <div class="controls">
+            <button class="control-btn" id="shuffleBtn" title="Shuffle"><i class="fas fa-random"></i></button>
+            <button class="control-btn" id="prevBtn" title="Previous"><i class="fas fa-step-backward"></i></button>
+            <button class="control-btn play-pause" id="playPauseBtn" title="Play/Pause"><i class="fas fa-play"></i></button>
+            <button class="control-btn" id="nextBtn" title="Next"><i class="fas fa-step-forward"></i></button>
+            <button class="control-btn" id="repeatBtn" title="Repeat"><i class="fas fa-redo"></i></button>
+        </div>
+        
+        <div class="volume-container">
+            <button class="volume-btn" id="muteBtn"><i class="fas fa-volume-up"></i></button>
+            <input type="range" id="volumeSlider" min="0" max="100" value="50" class="volume-slider">
+            <span class="volume-value">50%</span>
+        </div>
+        
+        <div class="playlist">
+            <div class="playlist-header">
+                <h3><i class="fas fa-list"></i> Playlist</h3>
+                <div class="playlist-controls">
+                    <button class="control-btn small" id="clearPlaylistBtn" title="Clear Playlist"><i class="fas fa-trash"></i></button>
+                    <button class="control-btn small" id="savePlaylistBtn" title="Save Playlist"><i class="fas fa-save"></i></button>
+                </div>
+            </div>
+            <div class="playlist-container">
+                <div class="upload-section">
+                    <label for="audioUpload" class="upload-btn">
+                        <i class="fas fa-plus"></i> Add Music
+                    </label>
+                    <input type="file" id="audioUpload" accept="audio/*" multiple style="display: none;">
+                </div>
+                <div class="empty-playlist" id="emptyPlaylist">
+                    <i class="fas fa-music"></i>
+                    <p>Your playlist is empty</p>
+                    <p>Add some music to get started!</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="player-info">
+            <div class="equalizer" id="equalizer">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <div class="storage-info">
+                <span id="trackCount">0 tracks</span>
+                <span id="totalDuration">0:00 total</span>
+            </div>
+        </div>
+    </div>
+    
+    <audio id="audioPlayer" preload="metadata" crossorigin="anonymous"></audio>
+    
+    <!-- Context Menu -->
+    <div class="context-menu" id="contextMenu">
+        <div class="context-item" data-action="play">
+            <i class="fas fa-play"></i> Play
+        </div>
+        <div class="context-item" data-action="remove">
+            <i class="fas fa-trash"></i> Remove
+        </div>
+        <div class="context-item" data-action="info">
+            <i class="fas fa-info-circle"></i> Track Info
+        </div>
+    </div>
+    
+    <!-- Toast Notifications -->
+    <div class="toast-container" id="toastContainer"></div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
